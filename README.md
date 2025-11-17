@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
+# @loscolmebrothers/home
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive landing page featuring floating images with delicious, professional animations.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A modern React landing page with:
+- **Floating images** that animate across the UI
+- **Interactive elements**: Click images to open modals, navigate to links, or trigger visual effects
+- **Professional animations** powered by GSAP (GreenSock)
+- **Clean, accessible design** with Radix UI primitives
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS 4
+- **Animation**: GSAP (GreenSock)
+- **State Management**: Zustand
+- **UI Components**: Radix UI
+- **Testing**: Vitest + React Testing Library
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 20.x or higher
+- npm/yarn/pnpm
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Visit `http://localhost:5173` to view the app.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Available Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm test         # Run tests
+npm run test:ui  # Run tests with UI
+npm run lint     # Run ESLint
 ```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── FloatingImage/  # Core floating image component
+│   ├── Modal/          # Modal system for interactions
+│   ├── Hero/           # Landing page hero section
+│   └── ui/             # Reusable UI primitives
+├── hooks/              # Custom React hooks
+├── utils/              # Utility functions
+├── types/              # TypeScript type definitions
+├── styles/             # Global styles
+├── assets/             # Images and static assets
+└── test/               # Test configuration
+```
+
+## Features (Planned)
+
+- [ ] Floating images with GSAP animations
+- [ ] Modal interactions
+- [ ] Link navigation
+- [ ] UI effect triggers
+- [ ] Responsive design
+- [ ] Accessible components
+
+## Development
+
+This project follows strict quality standards:
+- TypeScript strict mode
+- Comprehensive testing
+- Accessible components (WCAG 2.1 AA)
+- Clean, self-documenting code
+- Professional animation patterns
+
+## Attribution
+
+This project uses AI-assisted development with ethical attribution tracking.
+See [AI-HUMAN-ATTRIBUTION.md](./AI-HUMAN-ATTRIBUTION.md) for detailed contribution breakdowns.
+
+## License
+
+See [LICENSE](./LICENSE)
