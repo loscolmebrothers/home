@@ -1,7 +1,8 @@
 # AI/Human Attribution
 
-This project follows ethical AI/Human collaboration guidelines based on the framework by Manuel Masías:
-**Reference**: [Etiquetado Ético - mmasias](https://github.com/mmasias/mmasias/blob/main/ai/etiquetadoEtico.md)
+This project follows ethical AI/Human collaboration guidelines based on the framework by Manuel Masías:  
+
+📍 [Etiquetado Ético - mmasias](https://github.com/mmasias/mmasias/blob/main/ai/etiquetadoEtico.md)
 
 ## Contribution Framework
 
