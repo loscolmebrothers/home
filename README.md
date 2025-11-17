@@ -25,16 +25,16 @@ A modern React landing page with:
 ### Prerequisites
 
 - Node.js 20.x or higher
-- npm/yarn/pnpm
+- pnpm (install with `npm install -g pnpm`)
 
 ### Installation
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm dev
 ```
 
 Visit `http://localhost:5173` to view the app.
@@ -42,12 +42,12 @@ Visit `http://localhost:5173` to view the app.
 ### Available Scripts
 
 ```bash
-npm run dev      # Start development server
-npm run build    # Build for production
-npm run preview  # Preview production build
-npm test         # Run tests
-npm run test:ui  # Run tests with UI
-npm run lint     # Run ESLint
+pnpm dev      # Start development server
+pnpm build    # Build for production
+pnpm preview  # Preview production build
+pnpm test     # Run tests
+pnpm test:ui  # Run tests with UI
+pnpm lint     # Run ESLint
 ```
 
 ## Project Structure
