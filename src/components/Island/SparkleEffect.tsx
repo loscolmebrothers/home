@@ -1,5 +1,14 @@
 import { useRef, forwardRef, useImperativeHandle } from "react";
 import { gsap } from "gsap";
+import sparkle1 from "/assets/illustrations/sparkles/1.svg";
+import sparkle2 from "/assets/illustrations/sparkles/2.svg";
+import sparkle3 from "/assets/illustrations/sparkles/3.svg";
+import sparkle4 from "/assets/illustrations/sparkles/4.svg";
+import sparkle5 from "/assets/illustrations/sparkles/5.svg";
+import sparkle6 from "/assets/illustrations/sparkles/6.svg";
+import sparkle7 from "/assets/illustrations/sparkles/7.svg";
+
+const sparkleImages = [sparkle1, sparkle2, sparkle3, sparkle4, sparkle5, sparkle6, sparkle7];
 
 export type SparkleEffectHandle = {
   start: () => void;
@@ -54,7 +63,7 @@ export const SparkleEffect = forwardRef<SparkleEffectHandle>((_, ref) => {
   return (
     <>
       {Array.from({ length: 25 }).map((_, index) => {
-        const sparkleNum = Math.floor(Math.random() * 7) + 1;
+        const sparkleIndex = Math.floor(Math.random() * 7);
         const angle = (Math.random() * 360 * Math.PI) / 180;
         const distance = 50 + Math.random() * 30;
         const randomX = 50 + Math.cos(angle) * distance;
@@ -66,7 +75,7 @@ export const SparkleEffect = forwardRef<SparkleEffectHandle>((_, ref) => {
             ref={(el) => {
               sparklesRef.current[index] = el;
             }}
-            src={`/assets/illustrations/sparkles/${sparkleNum}.svg`}
+            src={sparkleImages[sparkleIndex]}
             alt=""
             className="absolute w-1.5 h-1.5 opacity-0 pointer-events-none"
             style={{

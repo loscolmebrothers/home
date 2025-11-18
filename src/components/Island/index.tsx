@@ -3,6 +3,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { SparkleEffect } from "./SparkleEffect";
 import type { SparkleEffectHandle } from "./SparkleEffect";
 import { useIslandAnimations } from "./useIslandAnimations";
+import islandSvg from "/assets/illustrations/Island.svg";
+import brosSvg from "/assets/illustrations/Bros.svg";
 
 export const Island = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,7 @@ export const Island = () => {
                 className="absolute left-1/2 -translate-x-1/2 w-[95%] min-w-[380px] max-w-[420px] opacity-0 cursor-pointer"
               >
                 <img
-                  src="/assets/illustrations/Island.svg"
+                  src={islandSvg}
                   alt="Floating Island"
                   className="w-full h-full object-contain object-bottom"
                 />
@@ -74,7 +76,7 @@ export const Island = () => {
                   className="absolute bottom-[15%] left-1/2 -translate-x-1/2 w-[56%] opacity-0"
                 >
                   <img
-                    src="/assets/illustrations/Bros.svg"
+                    src={brosSvg}
                     alt="Colme Brothers"
                     className="w-full h-auto object-contain"
                   />
