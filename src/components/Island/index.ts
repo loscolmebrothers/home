@@ -1,1 +1,0 @@
-export { Island } from './Island'
