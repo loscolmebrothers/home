@@ -1,16 +1,17 @@
-import { useEffect, RefObject } from "react";
+import { useEffect } from "react";
+import type { RefObject } from "react";
 import { gsap } from "gsap";
 import type { SparkleEffectHandle } from "./SparkleEffect";
 
 interface UseIslandAnimationsProps {
-  containerRef: RefObject<HTMLDivElement>;
-  islandRef: RefObject<HTMLDivElement>;
-  brosRef: RefObject<HTMLDivElement>;
-  balloonLogoRef: RefObject<HTMLDivElement>;
-  losRef: RefObject<HTMLImageElement>;
-  colmeRef: RefObject<HTMLImageElement>;
-  brothersRef: RefObject<HTMLImageElement>;
-  sparklesRef: RefObject<SparkleEffectHandle>;
+  containerRef: RefObject<HTMLDivElement | null>;
+  islandRef: RefObject<HTMLDivElement | null>;
+  brosRef: RefObject<HTMLDivElement | null>;
+  balloonLogoRef: RefObject<HTMLDivElement | null>;
+  losRef: RefObject<HTMLImageElement | null>;
+  colmeRef: RefObject<HTMLImageElement | null>;
+  brothersRef: RefObject<HTMLImageElement | null>;
+  sparklesRef: RefObject<SparkleEffectHandle | null>;
 }
 
 export const useIslandAnimations = ({

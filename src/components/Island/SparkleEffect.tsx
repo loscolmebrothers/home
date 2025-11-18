@@ -63,7 +63,9 @@ export const SparkleEffect = forwardRef<SparkleEffectHandle>((_, ref) => {
         return (
           <img
             key={index}
-            ref={(el) => (sparklesRef.current[index] = el)}
+            ref={(el) => {
+              sparklesRef.current[index] = el;
+            }}
             src={`/assets/illustrations/sparkles/${sparkleNum}.svg`}
             alt=""
             className="absolute w-1.5 h-1.5 opacity-0 pointer-events-none"
