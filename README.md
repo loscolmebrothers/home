@@ -55,9 +55,12 @@ pnpm lint     # Run ESLint
 ```
 src/
 ├── components/
+│   ├── Island/         # Hero component with animated island scene
+│   │   ├── index.tsx              # Main Island component
+│   │   ├── SparkleEffect.tsx      # Sparkle particle system
+│   │   └── useIslandAnimations.ts # GSAP animation hook
 │   ├── FloatingImage/  # Core floating image component
 │   ├── Modal/          # Modal system for interactions
-│   ├── Hero/           # Landing page hero section
 │   └── ui/             # Reusable UI primitives
 ├── hooks/              # Custom React hooks
 ├── utils/              # Utility functions
@@ -67,14 +70,19 @@ src/
 └── test/               # Test configuration
 ```
 
-## Features (Planned)
+## Features
 
-- [ ] Floating images with GSAP animations
-- [ ] Modal interactions
+- [x] Island hero component with GSAP entrance animations
+- [x] Floating animation system (continuous motion)
+- [x] Interactive hover effects with spring animations
+- [x] Sparkle particle system (25 animated sparkles)
+- [x] Modal integration with Radix UI Dialog
+- [x] Responsive sizing with grouped constraints
+- [ ] Additional floating images
 - [ ] Link navigation
 - [ ] UI effect triggers
-- [ ] Responsive design
-- [ ] Accessible components
+- [ ] Full responsive design
+- [ ] Accessible components (WCAG 2.1 AA)
 
 ## Development
 
