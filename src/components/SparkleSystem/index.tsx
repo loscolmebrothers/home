@@ -23,7 +23,7 @@ export const SparkleSystem = () => {
 
   // Use lazy state initializer to ensure positions only calculated once
   const [sparklePositions] = useState(() =>
-    Array.from({ length: 100 }).map((_, index) => {
+    Array.from({ length: 120 }).map((_, index) => {
       // Random position (avoiding center where island is)
       let x = Math.random() * 100;
       let y = Math.random() * 100;
