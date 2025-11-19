@@ -1,6 +1,7 @@
 import { Island } from "./components/Island";
 import { SparkleSystem } from "./components/SparkleSystem";
 import { FloatingIllustrations } from "./components/FloatingIllustrations";
+import { BottomCTA } from "./components/CTATab";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <FloatingIllustrations />
       <SparkleSystem />
       <Island />
+      <BottomCTA />
     </>
   );
 }
