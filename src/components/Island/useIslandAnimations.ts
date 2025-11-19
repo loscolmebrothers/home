@@ -117,8 +117,6 @@ export const useIslandAnimations = ({
           duration: 0.6,
           ease: "elastic.out(1, 0.3)",
         });
-
-        sparklesRef.current?.start();
       };
 
       const handleMouseLeave = () => {
@@ -132,8 +130,6 @@ export const useIslandAnimations = ({
           duration: 0.6,
           ease: "elastic.out(1, 0.3)",
         });
-
-        sparklesRef.current?.stop();
       };
 
       islandRef.current?.addEventListener("mouseenter", handleMouseEnter);

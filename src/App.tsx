@@ -1,10 +1,12 @@
 import { Island } from './components/Island'
+import { SparkleSystem } from './components/SparkleSystem'
 
 function App() {
   return (
-    <div>
+    <>
+      <SparkleSystem />
       <Island />
-    </div>
+    </>
   )
 }
 
