@@ -1,4 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import { gsap } from "gsap";
 import sparkle1 from "/assets/illustrations/sparkles/1.svg";
 import sparkle2 from "/assets/illustrations/sparkles/2.svg";
@@ -18,19 +24,21 @@ const sparkleImages = [
   sparkle7,
 ];
 
-export const SparkleSystem = () => {
+export type SparkleSystemHandle = {
+  intensify: () => void;
+  calm: () => void;
+};
+
+export const SparkleSystem = forwardRef<SparkleSystemHandle>((_, ref) => {
   const sparklesRef = useRef<(HTMLImageElement | null)[]>([]);
 
   // Use lazy state initializer to ensure positions only calculated once
   const [sparklePositions] = useState(() =>
     Array.from({ length: 120 }).map((_, index) => {
-      // Random position (avoiding center where island is)
       let x = Math.random() * 100;
       let y = Math.random() * 100;
 
-      // Push items away from center (35-65% x, 25-75% y)
       if (x > 35 && x < 65 && y > 25 && y < 75) {
-        // If in center zone, push to edges
         if (Math.random() > 0.5) {
           x = x < 50 ? Math.random() * 30 : 70 + Math.random() * 30;
         } else {
@@ -39,7 +47,6 @@ export const SparkleSystem = () => {
       }
 
       const sparkleIndex = Math.floor(Math.random() * 7);
-      // Sparkles 1, 6, and 7 (indices 0, 5, 6) are bigger
       const isBigSparkle =
         sparkleIndex === 0 || sparkleIndex === 5 || sparkleIndex === 6;
       const size = isBigSparkle
@@ -52,12 +59,45 @@ export const SparkleSystem = () => {
         x,
         y,
         size,
-        floatDuration: 2 + Math.random() * 3, // 2-5s
-        twinkleDuration: 0.3 + Math.random(), // 0.5-2s
-        delay: Math.random() * 3, // 0-3s
+        floatDuration: 2 + Math.random() * 3,
+        twinkleDuration: 0.3 + Math.random(),
+        delay: Math.random() * 3,
       };
     }),
   );
+
+  useImperativeHandle(ref, () => ({
+    intensify: () => {
+      sparklesRef.current.forEach((sparkle, index) => {
+        if (!sparkle) return;
+        const position = sparklePositions[index];
+
+        gsap.to(sparkle, {
+          opacity: 0.6 + Math.random() * 0.3,
+          duration: position.twinkleDuration,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut",
+          overwrite: true,
+        });
+      });
+    },
+    calm: () => {
+      sparklesRef.current.forEach((sparkle, index) => {
+        if (!sparkle) return;
+        const position = sparklePositions[index];
+
+        gsap.to(sparkle, {
+          opacity: 0.05 + Math.random() * 0.35,
+          duration: position.twinkleDuration,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut",
+          overwrite: true,
+        });
+      });
+    },
+  }));
 
   useEffect(() => {
     sparklesRef.current.forEach((sparkle, index) => {
@@ -65,7 +105,6 @@ export const SparkleSystem = () => {
 
       const position = sparklePositions[index];
 
-      // Subtle floating animation
       gsap.to(sparkle, {
         y: "+=8",
         duration: position.floatDuration,
@@ -75,9 +114,8 @@ export const SparkleSystem = () => {
         delay: position.delay,
       });
 
-      // Twinkling - rapid opacity changes
       gsap.to(sparkle, {
-        opacity: 0.05 + Math.random() * 0.35, // 0.15-0.4
+        opacity: 0.05 + Math.random() * 0.35,
         duration: position.twinkleDuration,
         repeat: -1,
         yoyo: true,
@@ -85,6 +123,12 @@ export const SparkleSystem = () => {
         delay: position.delay * 0.5,
       });
     });
+
+    return () => {
+      sparklesRef.current.forEach((sparkle) => {
+        if (sparkle) gsap.killTweensOf(sparkle);
+      });
+    };
   }, [sparklePositions]);
 
   return (
@@ -108,4 +152,4 @@ export const SparkleSystem = () => {
       ))}
     </div>
   );
-};
+});

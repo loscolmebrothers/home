@@ -1,12 +1,22 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type RefObject } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { SparkleEffect } from "./SparkleEffect";
 import type { SparkleEffectHandle } from "./SparkleEffect";
 import { useIslandAnimations } from "./useIslandAnimations";
+import type { SparkleSystemHandle } from "../SparkleSystem";
+import type { FloatingIllustrationsHandle } from "../FloatingIllustrations";
 import islandSvg from "/assets/illustrations/Island.svg";
 import brosSvg from "/assets/illustrations/Bros.svg";
 
-export const Island = () => {
+interface IslandProps {
+  sparkleSystemRef: RefObject<SparkleSystemHandle | null>;
+  floatingIllustrationsRef: RefObject<FloatingIllustrationsHandle | null>;
+}
+
+export const Island = ({
+  sparkleSystemRef,
+  floatingIllustrationsRef,
+}: IslandProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const islandRef = useRef<HTMLDivElement>(null);
   const brosRef = useRef<HTMLDivElement>(null);
@@ -26,6 +36,8 @@ export const Island = () => {
     colmeRef,
     brothersRef,
     sparklesRef,
+    sparkleSystemRef,
+    floatingIllustrationsRef,
   });
 
   return (
@@ -36,63 +48,56 @@ export const Island = () => {
       >
         <div className="relative w-full h-full max-w-6xl mx-auto flex items-center justify-center">
           <div className="relative w-full h-full flex items-center justify-center">
-            <Dialog.Trigger asChild>
+            <div
+              ref={islandRef}
+              className="absolute left-1/2 -translate-x-1/2 w-[95%] min-w-[380px] max-w-[420px] opacity-0"
+            >
+              <img
+                src={islandSvg}
+                alt="Floating Island"
+                className="w-full h-full object-contain object-bottom"
+              />
+
               <div
-                ref={islandRef}
-                className="absolute left-1/2 -translate-x-1/2 w-[95%] min-w-[380px] max-w-[420px] opacity-0 cursor-pointer"
+                ref={balloonLogoRef}
+                className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[60%] flex flex-col items-center gap-0.5 opacity-0 origin-bottom"
               >
                 <img
-                  src={islandSvg}
-                  alt="Floating Island"
-                  className="w-full h-full object-contain object-bottom"
+                  ref={losRef}
+                  src="https://assets.loscolmebrothers.com/logo/slices/vector/LOS.svg"
+                  alt="LOS"
+                  className="w-[30%] h-auto"
                 />
-
-                <div
-                  ref={balloonLogoRef}
-                  className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[60%] flex flex-col items-center gap-0.5 opacity-0 origin-bottom"
-                >
-                  <img
-                    ref={losRef}
-                    src="https://assets.loscolmebrothers.com/logo/slices/vector/LOS.svg"
-                    alt="LOS"
-                    className="w-[30%] h-auto"
-                  />
-                  <img
-                    ref={colmeRef}
-                    src="https://assets.loscolmebrothers.com/logo/slices/vector/COLME.svg"
-                    alt="COLME"
-                    className="w-full h-auto"
-                  />
-                  <img
-                    ref={brothersRef}
-                    src="https://assets.loscolmebrothers.com/logo/slices/vector/BROTHERS.svg"
-                    alt="BROTHERS"
-                    className="w-full h-auto"
-                  />
-                </div>
-
-                <div
-                  ref={brosRef}
-                  className="absolute bottom-[15%] left-1/2 -translate-x-1/2 w-[56%] opacity-0"
-                >
-                  <img
-                    src={brosSvg}
-                    alt="Colme Brothers"
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-
-                <SparkleEffect ref={sparklesRef} />
+                <img
+                  ref={colmeRef}
+                  src="https://assets.loscolmebrothers.com/logo/slices/vector/COLME.svg"
+                  alt="COLME"
+                  className="w-full h-auto"
+                />
+                <img
+                  ref={brothersRef}
+                  src="https://assets.loscolmebrothers.com/logo/slices/vector/BROTHERS.svg"
+                  alt="BROTHERS"
+                  className="w-full h-auto"
+                />
               </div>
-            </Dialog.Trigger>
+
+              <div
+                ref={brosRef}
+                className="absolute bottom-[15%] left-1/2 -translate-x-1/2 w-[56%] opacity-0"
+              >
+                <img
+                  src={brosSvg}
+                  alt="Colme Brothers"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+
+              <SparkleEffect ref={sparklesRef} />
+            </div>
           </div>
         </div>
       </div>
-
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-        <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-8 w-[90vw] max-w-md shadow-xl"></Dialog.Content>
-      </Dialog.Portal>
     </Dialog.Root>
   );
 };

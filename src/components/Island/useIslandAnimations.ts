@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import type { RefObject } from "react";
 import { gsap } from "gsap";
 import type { SparkleEffectHandle } from "./SparkleEffect";
+import type { SparkleSystemHandle } from "../SparkleSystem";
+import type { FloatingIllustrationsHandle } from "../FloatingIllustrations";
 
 interface UseIslandAnimationsProps {
   containerRef: RefObject<HTMLDivElement | null>;
@@ -12,6 +14,8 @@ interface UseIslandAnimationsProps {
   colmeRef: RefObject<HTMLImageElement | null>;
   brothersRef: RefObject<HTMLImageElement | null>;
   sparklesRef: RefObject<SparkleEffectHandle | null>;
+  sparkleSystemRef: RefObject<SparkleSystemHandle | null>;
+  floatingIllustrationsRef: RefObject<FloatingIllustrationsHandle | null>;
 }
 
 export const useIslandAnimations = ({
@@ -23,6 +27,8 @@ export const useIslandAnimations = ({
   colmeRef,
   brothersRef,
   sparklesRef,
+  sparkleSystemRef,
+  floatingIllustrationsRef,
 }: UseIslandAnimationsProps) => {
   useEffect(() => {
     if (
@@ -40,7 +46,6 @@ export const useIslandAnimations = ({
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
 
-      // Entrance sequence: Bros → Balloon → Logo
       tl.to(brosRef.current, {
         scale: 1,
         opacity: 1,
@@ -78,7 +83,6 @@ export const useIslandAnimations = ({
           0,
         );
 
-      // Continuous floating animations
       gsap.to(islandRef.current, {
         y: "+=15",
         duration: 3,
@@ -105,7 +109,6 @@ export const useIslandAnimations = ({
         delay: 0.3,
       });
 
-      // Hover spring effect
       const handleMouseEnter = () => {
         gsap.to(islandRef.current, {
           scale: 1.05,
@@ -117,6 +120,9 @@ export const useIslandAnimations = ({
           duration: 0.6,
           ease: "elastic.out(1, 0.3)",
         });
+
+        sparkleSystemRef.current?.intensify();
+        floatingIllustrationsRef.current?.fadeOut();
       };
 
       const handleMouseLeave = () => {
@@ -130,6 +136,9 @@ export const useIslandAnimations = ({
           duration: 0.6,
           ease: "elastic.out(1, 0.3)",
         });
+
+        sparkleSystemRef.current?.calm();
+        floatingIllustrationsRef.current?.fadeIn();
       };
 
       islandRef.current?.addEventListener("mouseenter", handleMouseEnter);
