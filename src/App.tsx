@@ -5,7 +5,6 @@ import type { SparkleSystemHandle } from "./components/SparkleSystem";
 import { FloatingIllustrations } from "./components/FloatingIllustrations";
 import type { FloatingIllustrationsHandle } from "./components/FloatingIllustrations";
 import { CTATab } from "./components/CTATab";
-import { ConstructionWarning } from "./components/ConstructionWarning";
 
 function App() {
   const sparkleSystemRef = useRef<SparkleSystemHandle>(null);
@@ -20,7 +19,6 @@ function App() {
         floatingIllustrationsRef={floatingIllustrationsRef}
       />
       <CTATab />
-      <ConstructionWarning />
     </>
   );
 }
