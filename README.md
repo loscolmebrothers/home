@@ -55,18 +55,20 @@ pnpm lint     # Run ESLint
 ```
 src/
 ├── components/
-│   ├── Island/         # Hero component with animated island scene
+│   ├── Island/                  # Hero component with animated island scene
 │   │   ├── index.tsx              # Main Island component
-│   │   ├── SparkleEffect.tsx      # Sparkle particle system
+│   │   ├── SparkleEffect.tsx      # Sparkle particle system (25 particles)
 │   │   └── useIslandAnimations.ts # GSAP animation hook
-│   ├── FloatingImage/  # Core floating image component
-│   ├── Modal/          # Modal system for interactions
-│   └── ui/             # Reusable UI primitives
+│   ├── FloatingIllustrations.tsx  # 30 orbiting illustrations with GSAP
+│   ├── SparkleSystem.tsx          # Global sparkle background (120 sparkles)
+│   ├── CTATab.tsx                 # Fixed bottom CTA with contact link
+│   └── ui/                        # Reusable UI primitives
 ├── hooks/              # Custom React hooks
 ├── utils/              # Utility functions
 ├── types/              # TypeScript type definitions
 ├── styles/             # Global styles
 ├── assets/             # Images and static assets
+│   └── illustrations/  # SVG illustrations for floating images
 └── test/               # Test configuration
 ```
 
@@ -75,13 +77,14 @@ src/
 - [x] Island hero component with GSAP entrance animations
 - [x] Floating animation system (continuous motion)
 - [x] Interactive hover effects with spring animations
-- [x] Sparkle particle system (25 animated sparkles)
+- [x] Sparkle particle systems (25 island sparkles + 120 background sparkles)
 - [x] Modal integration with Radix UI Dialog
-- [x] Responsive sizing with grouped constraints
-- [ ] Additional floating images
-- [ ] Link navigation
-- [ ] UI effect triggers
-- [ ] Full responsive design
+- [x] Orbiting illustrations (30 SVG images in circular motion)
+- [x] CTA tab at bottom with contact link
+- [x] Bros hover effect with scale and intensity animations
+- [x] Mobile viewport support (dvh units for proper mobile browser UI handling)
+- [ ] Individual image interactions (links, modals, effects)
+- [ ] Full responsive design refinement
 - [ ] Accessible components (WCAG 2.1 AA)
 
 ## Development

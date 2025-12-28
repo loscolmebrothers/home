@@ -22,7 +22,7 @@ We track contributions across four dimensions:
 
 ## Project Contributions
 
-**Last Updated**: 2025-11-17
+**Last Updated**: 2025-12-28
 
 ### Overall Project Attribution
 
@@ -31,15 +31,15 @@ We track contributions across four dimensions:
 │                  CONTRIBUTION BREAKDOWN                     │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  Human: ████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 40%    │
-│  AI:    ░░░░░░░░░░░░░░░░████████████████████████████ 60%    │
+│  Human: ██████████████████████████████░░░░░░░░░░░░░░ 65%    │
+│  AI:    ░░░░░░░░░░░░░░░░░░░░░░░░░░████████████████░░ 35%    │
 │                                                             │
 ├─────────────────────────────────────────────────────────────┤
 │  Phase              │  Human       │  AI                    │
 ├─────────────────────────────────────────────────────────────┤
 │  Conceptualization  │  Principal   │  Support               │
 │  Analysis           │  Equal       │  Equal                 │
-│  Implementation     │  Support     │  Principal             │
+│  Implementation     │  Equal       │  Equal                 │
 │  Validation         │  Principal   │  Support               │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -164,6 +164,172 @@ We track contributions across four dimensions:
 - TypeScript `verbatimModuleSyntax` issue resolved with type-only imports
 - Desktop: hover shows sparkles, click opens modal
 - Touch: tap opens modal (no hover sparkles)
+
+---
+
+### 2025-11-19: Global Sparkle System
+
+**Phase**: Implementation + Validation
+
+| Role | Human Contribution | AI Contribution |
+|------|-------------------|--------------------|
+| Conceptualization | Principal - Background sparkle vision, particle count, positioning strategy | None |
+| Analysis | Principal - Evaluated sparkle sizes, distribution patterns, performance | None |
+| Implementation | Principal - Full SparkleSystem component (111 lines), GSAP animations, ref management | None |
+| Validation | Principal - Visual testing, animation timing, opacity levels | None |
+
+**Deliverables**:
+- ✅ SparkleSystem component with 120 animated particles
+- ✅ 7 different sparkle SVG variants with size tiers
+- ✅ Radial positioning avoiding center island area
+- ✅ Float animations (2-5s duration, ±8px vertical)
+- ✅ Twinkle opacity animations (0.05-0.4 range)
+- ✅ Exposed `intensify()` and `calm()` methods for interactions
+- ✅ Fixed z-index layering (z-0 for background)
+
+**Tools Used**: None (manual implementation)
+**Human Time**: ~1 hour (design, implementation, refinement)
+**AI Time**: 0 minutes
+**Commit**: `f52448d`
+
+**Notes**:
+- Independently implemented from scratch
+- Uses GSAP for smooth float and twinkle animations
+- Sparkles positioned to avoid central 35-65% horizontal × 25-75% vertical area
+- Three size tiers: big sparkles (18-24px) for indices 0,5,6; small (6-8px) for others
+
+---
+
+### 2025-11-19: Orbiting Illustrations System
+
+**Phase**: Implementation + Validation
+
+| Role | Human Contribution | AI Contribution |
+|------|-------------------|--------------------|
+| Conceptualization | Principal - Orbiting animation concept, 30 illustration selection, size grouping strategy | None |
+| Analysis | Principal - Determined orbital mechanics, radius ranges, rotation angles | None |
+| Implementation | Principal - Full FloatingIllustrations component (188 lines), GSAP orbital animation, ref system | None |
+| Validation | Principal - Visual validation, animation speeds, illustration sizes | None |
+
+**Deliverables**:
+- ✅ FloatingIllustrations component with 30 SVG illustrations
+- ✅ Circular orbital motion around viewport center (50vw, 50vh)
+- ✅ Three size tiers: Extra big (180-260px), Big (120-200px), Standard (80-160px)
+- ✅ Random orbital radius (40-60vw from center)
+- ✅ Continuous GSAP animations (30-70s per orbit)
+- ✅ `fadeOut()` and `fadeIn()` methods for hover interactions
+- ✅ Fixed positioning with z-[5] layering
+
+**Illustrations**:
+- Extra big: Venus, Palm Tree
+- Big: Plant, Unicycle
+- Standard: Amplifier, Bottle, Cap, CD, Coffee, Cup, Dice, Drum, Flower, Glove, Guitar, Headset, Lamp, Master Sword, Mona Lisa, Monitor, Mouse, Nintendo Switch, Pawn, Pencil, PlayStation Controller, Pokeball, Starry Night, Tattoo Machine, Ticket, Trumpet, UNO Reverse Card
+
+**Tools Used**: None (manual implementation)
+**Human Time**: ~2 hours (SVG imports, orbit calculations, GSAP animation logic)
+**AI Time**: 0 minutes
+**Commit**: `a766485`
+
+**Notes**:
+- Independently implemented orbital mechanics using trigonometry
+- Each illustration has unique: angle, radius, size, rotation, orbit duration
+- Uses vh/vw units for viewport-relative positioning (later updated to dvh)
+- Pointer events disabled for non-blocking background layer
+
+---
+
+### 2025-11-19: CTA Tab Component
+
+**Phase**: Implementation + Validation
+
+| Role | Human Contribution | AI Contribution |
+|------|-------------------|--------------------|
+| Conceptualization | Principal - Bottom CTA design, messaging, contact link | None |
+| Analysis | Principal - Glassmorphism styling, positioning strategy | None |
+| Implementation | Principal - Full CTATab component (23 lines), backdrop blur, hover effects | None |
+| Validation | Principal - Visual design validation, hover interaction testing | None |
+
+**Deliverables**:
+- ✅ Fixed bottom CTA tab with glassmorphism design
+- ✅ Backdrop blur with semi-transparent black background
+- ✅ "Yours could look this cool" messaging
+- ✅ Email link button with hover scale effect
+- ✅ React Feather Send icon integration
+- ✅ Rounded top corners with border styling
+
+**Tools Used**: None (manual implementation)
+**Human Time**: ~30 minutes (design, implementation, styling)
+**AI Time**: 0 minutes
+**Commit**: `9417b9d` (also included single-file folder refactoring)
+
+**Notes**:
+- Uses ApfelGrotezk custom font
+- Pointer events carefully managed (none on wrapper, auto on content)
+- Email link: hello@loscolmebrothers.com
+- Z-index 20 to stay above other elements
+
+---
+
+### 2025-11-20: Bros Hover Effects & Enhancements
+
+**Phase**: Implementation + Validation
+
+| Role | Human Contribution | AI Contribution |
+|------|-------------------|--------------------|
+| Conceptualization | Principal - Interactive hover behavior, sparkle/illustration fade effects | None |
+| Analysis | Principal - Determined interaction choreography between island, sparkles, and illustrations | None |
+| Implementation | Principal - Enhanced Island animations, SparkleSystem intensity methods, FloatingIllustrations fade logic | None |
+| Validation | Principal - Cross-component interaction testing, timing coordination | None |
+
+**Deliverables**:
+- ✅ Island hover triggers sparkle intensification
+- ✅ Island hover fades out floating illustrations (opacity 0.6 → 0.2)
+- ✅ Bros scale animation enhanced (1.15x with spring effect)
+- ✅ Coordinated animations across Island, SparkleSystem, FloatingIllustrations
+- ✅ ConstructionWarning component (later removed)
+- ✅ Deployment preparation (DNS, icons, build config)
+
+**Tools Used**: None (manual implementation)
+**Human Time**: ~3 hours (cross-component coordination, animation refinement)
+**AI Time**: 0 minutes
+**Commit**: `8c553c7`
+
+**Notes**:
+- Complex interaction choreography across three major components
+- Uses imperative handles to trigger animations across component boundaries
+- SparkleSystem methods: `intensify()` boosts opacity (0.6-0.9), `calm()` returns to base (0.05-0.4)
+- FloatingIllustrations methods: `fadeOut()` dims to 0.2, `fadeIn()` returns to 0.6
+- Added react-feather dependency for icons
+
+---
+
+### 2025-12-28: Mobile Viewport Height Fix
+
+**Phase**: Implementation + Validation
+
+| Role | Human Contribution | AI Contribution |
+|------|-------------------|--------------------|
+| Conceptualization | Principal - Identified mobile bottom bar issue, requested dvh conversion | Support - Understood requirements, planned implementation |
+| Analysis | Support - Provided context about mobile browser UI | Principal - Scanned codebase for all vh usage, identified affected files |
+| Implementation | None | Principal - Updated vh → dvh across Island, FloatingIllustrations, SparkleSystem |
+| Validation | Principal - Will test on mobile devices | Support - Code review, syntax validation |
+
+**Deliverables**:
+- ✅ Island component: `h-screen` → `h-dvh` (src/components/Island/index.tsx:47)
+- ✅ FloatingIllustrations: `vh` → `dvh` for vertical positioning (lines 166, 200)
+- ✅ SparkleSystem: `vh` → `dvh` for vertical positioning (line 147)
+- ✅ Consistent mobile viewport handling across all components
+
+**Tools Used**: Claude Code (Claude Sonnet 4.5)
+**Human Time**: ~5 minutes (issue identification, code review)
+**AI Time**: ~10 minutes (codebase exploration, implementation)
+
+**Notes**:
+- `dvh` (dynamic viewport height) accounts for mobile browser UI (address bar, bottom navigation)
+- Browser support: Safari 15.4+, Chrome 108+, Firefox 110+ (all March 2022+)
+- Only vertical positioning affected; horizontal `vw` units unchanged
+- User initially requested bottle image enhancements (glow, link) but reverted those changes
+- Final implementation: mobile viewport fix only
 
 ---
 

@@ -163,7 +163,7 @@ export const FloatingIllustrations = forwardRef<FloatingIllustrationsHandle>(
               const y = item.centerY + item.radius * Math.sin(radians);
 
               illustration.style.left = `${x}vw`;
-              illustration.style.top = `${y}vh`;
+              illustration.style.top = `${y}dvh`;
             },
           },
         );
@@ -197,7 +197,7 @@ export const FloatingIllustrations = forwardRef<FloatingIllustrationsHandle>(
               className="absolute opacity-60"
               style={{
                 left: `${x}vw`,
-                top: `${y}vh`,
+                top: `${y}dvh`,
                 width: `${item.size}px`,
                 height: "auto",
                 transform: `translate(-50%, -50%) rotate(${item.rotation}deg)`,

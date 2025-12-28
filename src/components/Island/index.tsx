@@ -44,7 +44,7 @@ export const Island = ({
     <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
       <div
         ref={containerRef}
-        className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b"
+        className="relative w-full h-dvh flex items-center justify-center overflow-hidden bg-gradient-to-b"
       >
         <div className="relative w-full h-full max-w-6xl mx-auto flex items-center justify-center">
           <div className="relative w-full h-full flex items-center justify-center">

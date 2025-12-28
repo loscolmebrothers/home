@@ -144,7 +144,7 @@ export const SparkleSystem = forwardRef<SparkleSystemHandle>((_, ref) => {
           className="absolute opacity-10"
           style={{
             left: `${sparkle.x}vw`,
-            top: `${sparkle.y}vh`,
+            top: `${sparkle.y}dvh`,
             width: `${sparkle.size}px`,
             height: `${sparkle.size}px`,
           }}
