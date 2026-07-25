@@ -34,7 +34,7 @@ export const SparkleSystem = forwardRef<SparkleSystemHandle>((_, ref) => {
 
   // Use lazy state initializer to ensure positions only calculated once
   const [sparklePositions] = useState(() =>
-    Array.from({ length: 120 }).map((_, index) => {
+    Array.from({ length: 80 }).map((_, index) => {
       let x = Math.random() * 100;
       let y = Math.random() * 100;
 
@@ -88,7 +88,7 @@ export const SparkleSystem = forwardRef<SparkleSystemHandle>((_, ref) => {
         const position = sparklePositions[index];
 
         gsap.to(sparkle, {
-          opacity: 0.05 + Math.random() * 0.35,
+          opacity: 0.1 + Math.random() * 0.3,
           duration: position.twinkleDuration,
           repeat: -1,
           yoyo: true,
@@ -115,7 +115,7 @@ export const SparkleSystem = forwardRef<SparkleSystemHandle>((_, ref) => {
       });
 
       gsap.to(sparkle, {
-        opacity: 0.05 + Math.random() * 0.35,
+        opacity: 0.1 + Math.random() * 0.3,
         duration: position.twinkleDuration,
         repeat: -1,
         yoyo: true,
@@ -141,7 +141,7 @@ export const SparkleSystem = forwardRef<SparkleSystemHandle>((_, ref) => {
           }}
           src={sparkleImages[sparkle.sparkleIndex]}
           alt=""
-          className="absolute opacity-10"
+          className="absolute opacity-15"
           style={{
             left: `${sparkle.x}vw`,
             top: `${sparkle.y}dvh`,

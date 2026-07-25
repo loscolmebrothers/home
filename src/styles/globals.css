@@ -6,3 +6,11 @@
   font-weight: normal;
   font-style: normal;
 }
+
+body {
+  background-color: #ffffff;
+}
+
+.text-gold {
+  color: #D4AF37;
+}
