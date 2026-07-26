@@ -8,12 +8,14 @@ export type RoamingLampHandle = {
 };
 
 interface RoamingLampProps {
-  onLampClick: () => void;
+  onLampClick: (x: number, y: number) => void;
+  isOpen?: boolean;
 }
 
 export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
-  ({ onLampClick }, ref) => {
+  ({ onLampClick, isOpen = false }, ref) => {
     const lampRef = useRef<HTMLDivElement>(null);
+    const xRef = useRef<HTMLDivElement>(null);
     const roamTweenRef = useRef<gsap.core.Tween | null>(null);
 
     const pickRoamTarget = () => {
@@ -36,6 +38,12 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
       });
     };
 
+    const handleClick = () => {
+      if (!lampRef.current) return;
+      const rect = lampRef.current.getBoundingClientRect();
+      onLampClick(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    };
+
     useImperativeHandle(ref, () => ({
       start: () => {
         if (!lampRef.current) return;
@@ -56,6 +64,15 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     }));
 
     useEffect(() => {
+      if (!xRef.current) return;
+      gsap.to(xRef.current, {
+        opacity: isOpen ? 1 : 0,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }, [isOpen]);
+
+    useEffect(() => {
       return () => {
         roamTweenRef.current?.kill();
         if (lampRef.current) gsap.killTweensOf(lampRef.current);
@@ -63,13 +80,33 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     }, []);
 
     return (
-      <div className="fixed top-0 left-0 z-9999 pointer-events-none mix-blend-exclusion">
+      <div className="fixed top-0 left-0 z-9999 pointer-events-none">
         <div
           ref={lampRef}
-          onClick={onLampClick}
-          className="pointer-events-auto cursor-help md:w-82 md:h-82 w-52 h-52 opacity-0"
+          onClick={handleClick}
+          onMouseEnter={() => roamTweenRef.current?.pause()}
+          onMouseLeave={() => roamTweenRef.current?.resume()}
+          role="button"
+          aria-label={isOpen ? "Close" : "Open"}
+          className="pointer-events-auto cursor-pointer relative md:w-82 md:h-82 w-52 h-52 opacity-0"
         >
-          <img src={lamp} alt="" className="w-full h-full object-contain" />
+          <div className="mix-blend-exclusion w-full h-full">
+            <img
+              src={lamp}
+              alt=""
+              draggable={false}
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div
+            ref={xRef}
+            className="absolute inset-0 flex items-center justify-center opacity-0"
+            aria-hidden="true"
+          >
+            <span className="text-white text-4xl font-thin select-none leading-none">
+              ×
+            </span>
+          </div>
         </div>
       </div>
     );
