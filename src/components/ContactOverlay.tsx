@@ -56,12 +56,12 @@ export const ContactOverlay = ({ open, originX, originY }: ContactOverlayProps) 
     >
       <div style={{ fontFamily: "'ApfelGrotezk', sans-serif" }} className="px-6">
         <h1 className="text-8xl font-extrabold"> Make a wish </h1>
-        <p className="text-md mb-12 opacity-80"> A new webpage? Fix your IT mess? New idea you want to bring to life?</p>
+        <p className="text-lg mb-12 mt-4 opacity-80"> A new webpage? Fix your IT mess? New idea you want to bring to life?</p>
         <a
           href="mailto:hello@loscolmebrothers.com"
           className="group relative inline-block text-3xl cursor-pointer transition-colors duration-300 hover:text-[#3759d4]"
         >
-          Let's talk!
+          {"Let's talk!  ☜"}
           <span className="absolute -bottom-2 left-0 h-0.5 w-full origin-center scale-x-0 bg-[#3759d4] transition-transform duration-500 ease-out group-hover:scale-x-100" />
         </a>
       </div>
