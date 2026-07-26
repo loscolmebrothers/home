@@ -3,7 +3,7 @@ import { PortfolioList } from "../PortfolioList";
 import { RoamingLamp } from "../RoamingLamp";
 import type { RoamingLampHandle } from "../RoamingLamp";
 import { Loading } from "../Loading";
-import { Page2Overlay } from "../Page2Overlay";
+import { ContactOverlay } from "../ContactOverlay";
 import { useLandingAnimations } from "./useLandingAnimations";
 import brosSvg from "/assets/illustrations/Bros.svg";
 
@@ -48,7 +48,7 @@ export const Landing = () => {
 
       <Loading duration={2200} onFinish={startEntrance} />
 
-      <Page2Overlay open={page2.open} originX={page2.x} originY={page2.y} />
+      <ContactOverlay open={page2.open} originX={page2.x} originY={page2.y} />
 
       <div
         ref={containerRef}
