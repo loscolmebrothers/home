@@ -51,8 +51,8 @@ export const ContactOverlay = ({ open, originX, originY }: ContactOverlayProps) 
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-200 bg-black pointer-events-none text-gray-200 flex justify-center flex-col text-center gap-2"
-      style={{ clipPath: "circle(0px at 0px 0px)" }}
+      className="fixed inset-0 z-200 bg-black text-gray-200 flex justify-center flex-col text-center gap-2"
+      style={{ clipPath: "circle(0px at 0px 0px)", pointerEvents: open ? "auto" : "none" }}
     >
       <div style={{ fontFamily: "'ApfelGrotezk', sans-serif" }} className="px-6">
         <h1 className="text-8xl font-extrabold"> Make a wish </h1>

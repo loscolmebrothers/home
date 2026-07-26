@@ -114,7 +114,7 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
           </svg>
           <div
             ref={xRef}
-            className="absolute inset-0 left-10 flex items-center justify-center opacity-0 text-4xl hover:text-6xl"
+            className="pointer-events-none absolute inset-0 left-10 flex items-center justify-center opacity-0 text-4xl"
             aria-hidden="true"
           >
             <span className="text-white  font-thin select-none leading-none ">
