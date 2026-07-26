@@ -97,19 +97,19 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
           onMouseLeave={() => roamTweenRef.current?.resume()}
           role="button"
           aria-label={isOpen ? "Close" : "Open"}
-          className="pointer-events-auto cursor-pointer relative md:w-82 md:h-82 w-52 h-52 opacity-0"
+          className="pointer-events-auto cursor-pointer relative md:w-68 md:h-68 w-48 h-48 opacity-0"
         >
           <div className="w-full h-full">
             <img
               src={lamp}
               alt=""
               draggable={false}
-              className="w-full h-full object-contain"
+              className="w-full object-cover flex"
             />
           </div>
           <div
             ref={xRef}
-            className="absolute inset-0 left-10 flex items-center justify-center opacity-0 text-4xl hover:text-6xl"
+            className="absolute inset-0 bottom-10 left-10 flex items-center justify-center opacity-0 text-4xl hover:text-6xl"
             aria-hidden="true"
           >
             <span className="text-white  font-thin select-none leading-none ">
