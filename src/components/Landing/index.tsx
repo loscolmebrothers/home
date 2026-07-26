@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { PortfolioList } from "../PortfolioList";
 import { RoamingLamp } from "../RoamingLamp";
 import type { RoamingLampHandle } from "../RoamingLamp";
@@ -21,6 +21,18 @@ export const Landing = () => {
   const handleLampClick = (x: number, y: number) => {
     setPage2((prev) => ({ open: !prev.open, x, y }));
   };
+
+  useEffect(() => {
+    if (!page2.open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        const pos = lampRef.current?.getPosition() ?? { x: page2.x, y: page2.y };
+        setPage2({ open: false, x: pos.x, y: pos.y });
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [page2.open]);
 
   const { startEntrance } = useLandingAnimations({
     containerRef,

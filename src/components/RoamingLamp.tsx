@@ -5,6 +5,7 @@ import lamp from "/assets/illustrations/LampInverted.svg";
 export type RoamingLampHandle = {
   start: () => void;
   stop: () => void;
+  getPosition: () => { x: number; y: number };
 };
 
 interface RoamingLampProps {
@@ -61,6 +62,14 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
         roamTweenRef.current?.kill();
         if (lampRef.current) gsap.killTweensOf(lampRef.current);
       },
+      getPosition: () => {
+        if (!lampRef.current) return { x: 0, y: 0 };
+        const rect = lampRef.current.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+        };
+      },
     }));
 
     useEffect(() => {
@@ -80,7 +89,7 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     }, []);
 
     return (
-      <div className="fixed top-0 left-0 z-9999 pointer-events-none">
+      <div className="fixed top-0 left-0 z-9999 pointer-events-none mix-blend-exclusion">
         <div
           ref={lampRef}
           onClick={handleClick}
@@ -90,7 +99,7 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
           aria-label={isOpen ? "Close" : "Open"}
           className="pointer-events-auto cursor-pointer relative md:w-82 md:h-82 w-52 h-52 opacity-0"
         >
-          <div className="mix-blend-exclusion w-full h-full">
+          <div className="w-full h-full">
             <img
               src={lamp}
               alt=""
@@ -100,10 +109,10 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
           </div>
           <div
             ref={xRef}
-            className="absolute inset-0 flex items-center justify-center opacity-0"
+            className="absolute inset-0 left-10 flex items-center justify-center opacity-0 text-4xl hover:text-6xl"
             aria-hidden="true"
           >
-            <span className="text-white text-4xl font-thin select-none leading-none">
+            <span className="text-white  font-thin select-none leading-none ">
               ×
             </span>
           </div>
