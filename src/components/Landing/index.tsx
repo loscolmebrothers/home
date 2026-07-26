@@ -52,7 +52,7 @@ export const Landing = () => {
 
       <div
         ref={containerRef}
-        className="relative w-full h-dvh flex flex-col items-center overflow-hidden"
+        className="relative w-full h-dvh flex flex-col items-center overflow-hidden pb-[env(safe-area-inset-bottom)]"
       >
         <img
           ref={logoRef}
