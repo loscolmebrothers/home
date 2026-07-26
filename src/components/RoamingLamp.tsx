@@ -93,8 +93,12 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
         <div
           ref={lampRef}
           onClick={handleClick}
-          onMouseEnter={() => roamTweenRef.current?.pause()}
-          onMouseLeave={() => roamTweenRef.current?.resume()}
+          onPointerEnter={(e) => {
+            if (e.pointerType === "mouse") roamTweenRef.current?.pause();
+          }}
+          onPointerLeave={(e) => {
+            if (e.pointerType === "mouse") roamTweenRef.current?.resume();
+          }}
           role="button"
           aria-label={isOpen ? "Close" : "Open"}
           className="pointer-events-auto cursor-pointer relative md:w-68 md:h-68 w-48 h-48 opacity-0"

@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { PortfolioList } from "../PortfolioList";
 import { RoamingLamp } from "../RoamingLamp";
 import type { RoamingLampHandle } from "../RoamingLamp";
-import { Loading } from "../Loading";
+import { Loading } from "@loscolmebrothers/loading";
 import { ContactOverlay } from "../ContactOverlay";
 import { useLandingAnimations } from "./useLandingAnimations";
 import brosSvg from "/assets/illustrations/Bros.svg";
@@ -16,23 +16,23 @@ export const Landing = () => {
   const brosRef = useRef<HTMLDivElement>(null);
   const lampRef = useRef<RoamingLampHandle>(null);
 
-  const [page2, setPage2] = useState({ open: false, x: 0, y: 0 });
+  const [contactOverlay, setContactOverlay] = useState({ open: false, x: 0, y: 0 });
 
   const handleLampClick = (x: number, y: number) => {
-    setPage2((prev) => ({ open: !prev.open, x, y }));
+    setContactOverlay((prev) => ({ open: !prev.open, x, y }));
   };
 
   useEffect(() => {
-    if (!page2.open) return;
+    if (!contactOverlay.open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        const pos = lampRef.current?.getPosition() ?? { x: page2.x, y: page2.y };
-        setPage2({ open: false, x: pos.x, y: pos.y });
+        const pos = lampRef.current?.getPosition() ?? { x: contactOverlay.x, y: contactOverlay.y };
+        setContactOverlay({ open: false, x: pos.x, y: pos.y });
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [page2.open]);
+  }, [contactOverlay.open]);
 
   const { startEntrance } = useLandingAnimations({
     containerRef,
@@ -44,15 +44,15 @@ export const Landing = () => {
 
   return (
     <>
-      <RoamingLamp ref={lampRef} onLampClick={handleLampClick} isOpen={page2.open} />
+      <RoamingLamp ref={lampRef} onLampClick={handleLampClick} isOpen={contactOverlay.open} />
 
       <Loading duration={2200} onFinish={startEntrance} />
 
-      <ContactOverlay open={page2.open} originX={page2.x} originY={page2.y} />
+      <ContactOverlay open={contactOverlay.open} originX={contactOverlay.x} originY={contactOverlay.y} />
 
       <div
         ref={containerRef}
-        className="relative w-full h-dvh flex flex-col items-center overflow-hidden"
+        className="relative w-full h-dvh flex flex-col items-center overflow-hidden pb-[env(safe-area-inset-bottom)]"
       >
         <img
           ref={logoRef}
