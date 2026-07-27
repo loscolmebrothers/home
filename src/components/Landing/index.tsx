@@ -46,7 +46,7 @@ export const Landing = () => {
     <>
       <RoamingLamp ref={lampRef} onLampClick={handleLampClick} isOpen={contactOverlay.open} />
 
-      <Loading duration={244200} onFinish={startEntrance} />
+      <Loading duration={2200} onFinish={startEntrance} />
 
       <ContactOverlay open={contactOverlay.open} originX={contactOverlay.x} originY={contactOverlay.y} />
 
