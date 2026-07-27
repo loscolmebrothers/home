@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@loscolmebrothers/loading':
-        specifier: git+ssh://git@github.com/loscolmebrothers/loading.git
-        version: https://codeload.github.com/loscolmebrothers/loading/tar.gz/d2d559ca56350a5a6ddf73a196eb1c598e431fc6(gsap@3.15.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: ^1.0.7
+        version: 1.0.7(gsap@3.15.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@radix-ui/react-dialog':
         specifier: ^1.1.15
         version: 1.1.23(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -483,9 +483,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@loscolmebrothers/loading@https://codeload.github.com/loscolmebrothers/loading/tar.gz/d2d559ca56350a5a6ddf73a196eb1c598e431fc6':
-    resolution: {tarball: https://codeload.github.com/loscolmebrothers/loading/tar.gz/d2d559ca56350a5a6ddf73a196eb1c598e431fc6}
-    version: 1.0.0
+  '@loscolmebrothers/loading@1.0.7':
+    resolution: {integrity: sha512-zIJt5wLuJamMJKOuwWNKymI/V75B5zg55tm0bsqzajP2+plYDx8hoaWs2lDREBradGG5nxuTuNYOKiGqQc4F3A==}
     peerDependencies:
       gsap: '>=3.12'
       react: '>=18'
@@ -2395,7 +2394,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@loscolmebrothers/loading@https://codeload.github.com/loscolmebrothers/loading/tar.gz/d2d559ca56350a5a6ddf73a196eb1c598e431fc6(gsap@3.15.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@loscolmebrothers/loading@1.0.7(gsap@3.15.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       gsap: 3.15.0
       react: 19.2.8
