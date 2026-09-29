@@ -65,15 +65,14 @@ export const Landing = () => {
           <PortfolioList ref={portfolioRef} />
         </div>
 
-        <div
-          ref={brosRef}
-          className="absolute md:top-60 top-75 left-1/2 -translate-x-1/2 w-full max-w-[1100px] opacity-0"
-        >
-          <img
-            src={brosSvg}
-            alt="The bros themselves"
-            className="w-full h-auto object-contain object-bottom"
-          />
+        <div className="absolute top-[max(18.75rem,calc(100dvh_-_135vw))] lg:top-60 left-1/2 -translate-x-[52.5%] lg:-translate-x-1/2 w-[135vw] lg:w-full lg:max-w-[1100px]">
+          <div ref={brosRef} className="opacity-0">
+            <img
+              src={brosSvg}
+              alt="The bros themselves"
+              className="w-full h-auto object-contain object-bottom"
+            />
+          </div>
         </div>
       </div>
     </>
