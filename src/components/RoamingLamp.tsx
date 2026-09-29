@@ -1,4 +1,4 @@
-import { useRef, useEffect, forwardRef, useImperativeHandle } from "react";
+import { useRef, useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import { gsap } from "gsap";
 import lamp from "/assets/illustrations/LampInverted.svg";
 
@@ -18,6 +18,9 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     const lampRef = useRef<HTMLDivElement>(null);
     const xRef = useRef<HTMLDivElement>(null);
     const roamTweenRef = useRef<gsap.core.Tween | null>(null);
+    const [hintDismissed, setHintDismissed] = useState(false);
+
+    const dismissHint = () => setHintDismissed(true);
 
     const pickRoamTarget = () => {
       if (typeof window === "undefined") return { x: 0, y: 0 };
@@ -40,6 +43,7 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     };
 
     const handleClick = () => {
+      dismissHint();
       if (!lampRef.current) return;
       const rect = lampRef.current.getBoundingClientRect();
       onLampClick(rect.left + rect.width / 2, rect.top + rect.height / 2);
@@ -82,6 +86,12 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     }, [isOpen]);
 
     useEffect(() => {
+      if (isOpen || hintDismissed) return;
+      const dismissTimer = window.setTimeout(() => setHintDismissed(true), 15000);
+      return () => window.clearTimeout(dismissTimer);
+    }, [isOpen, hintDismissed]);
+
+    useEffect(() => {
       return () => {
         roamTweenRef.current?.kill();
         if (lampRef.current) gsap.killTweensOf(lampRef.current);
@@ -111,6 +121,19 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
               className="w-full object-cover flex"
             />
           </div>
+          {!isOpen && !hintDismissed && (
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 -translate-x-1/2 top-full -translate-y-6 animate-pulse whitespace-nowrap"
+            >
+              <span
+                className="text-white font-thin text-xs md:text-sm tracking-[0.3em] uppercase select-none"
+                style={{ fontFamily: "'ApfelGrotezk', sans-serif" }}
+              >
+                Click me
+              </span>
+            </div>
+          )}
           <div
             ref={xRef}
             className="absolute inset-0 bottom-10 left-10 flex items-center justify-center opacity-0 text-4xl hover:text-6xl"
