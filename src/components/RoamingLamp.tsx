@@ -17,7 +17,9 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
   ({ onLampClick, isOpen = false }, ref) => {
     const lampRef = useRef<HTMLDivElement>(null);
     const xRef = useRef<HTMLDivElement>(null);
+    const clickMeRef = useRef<HTMLDivElement>(null);
     const roamTweenRef = useRef<gsap.core.Tween | null>(null);
+    const hintTweenRef = useRef<gsap.core.Timeline | null>(null);
     const [hintDismissed, setHintDismissed] = useState(false);
 
     const dismissHint = () => setHintDismissed(true);
@@ -61,10 +63,19 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
           delay: 1.5,
           onComplete: roam,
         });
+        if (clickMeRef.current) {
+          gsap.set(clickMeRef.current, { opacity: 0, scale: 0.5 });
+          hintTweenRef.current = gsap
+            .timeline({ delay: 1.5 + 0.8 + 0.5 })
+            .to(clickMeRef.current, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" })
+
+        }
       },
       stop: () => {
         roamTweenRef.current?.kill();
+        hintTweenRef.current?.kill();
         if (lampRef.current) gsap.killTweensOf(lampRef.current);
+        if (clickMeRef.current) gsap.killTweensOf([clickMeRef.current, clickMeRef.current.querySelector("span")]);
       },
       getPosition: () => {
         if (!lampRef.current) return { x: 0, y: 0 };
@@ -86,7 +97,10 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     }, [isOpen]);
 
     useEffect(() => {
-      if (isOpen || hintDismissed) return;
+      if (isOpen || hintDismissed) {
+        hintTweenRef.current?.kill();
+        return;
+      }
       const dismissTimer = window.setTimeout(() => setHintDismissed(true), 15000);
       return () => window.clearTimeout(dismissTimer);
     }, [isOpen, hintDismissed]);
@@ -94,6 +108,7 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
     useEffect(() => {
       return () => {
         roamTweenRef.current?.kill();
+        hintTweenRef.current?.kill();
         if (lampRef.current) gsap.killTweensOf(lampRef.current);
       };
     }, []);
@@ -123,14 +138,15 @@ export const RoamingLamp = forwardRef<RoamingLampHandle, RoamingLampProps>(
           </div>
           {!isOpen && !hintDismissed && (
             <div
+              ref={clickMeRef}
               aria-hidden="true"
-              className="absolute left-1/2 -translate-x-1/2 top-full -translate-y-6 animate-pulse whitespace-nowrap"
+              className="absolute right-1/4 translate-x-3 md:translate-x-1 top-1/2 whitespace-nowrap"
             >
               <span
-                className="text-white font-thin text-xs md:text-sm tracking-[0.3em] uppercase select-none"
+                className="bg-white p-1 text-black font-bold text-xs tracking-[0.3em] uppercase select-none animate-pulse"
                 style={{ fontFamily: "'ApfelGrotezk', sans-serif" }}
               >
-                Click me
+                {"Click me"}
               </span>
             </div>
           )}

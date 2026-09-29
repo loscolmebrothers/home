@@ -8,7 +8,7 @@ export interface PortfolioItem {
 
 const portfolioItems: PortfolioItem[] = [
   { label: "FOREVER MESSAGE", href: "https://forever.loscolmebrothers.com", isHighlighted: true },
-  { label: "PLANET PARTNERS", href: "https://planetpartners.pl" },
+  { label: "PLANET PARTNERS", href: "https://dev.planetpartners.pl" },
   { label: "EUROPA BODAS", href: "https://europabodas.com" },
 ];
 
